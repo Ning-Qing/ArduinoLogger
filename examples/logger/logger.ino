@@ -1,5 +1,7 @@
 #include <Logger.h>
 
+#define LOG_LEVEL LOG_DEBUG
+
 void setup()
 {
   Serial.begin(9600);

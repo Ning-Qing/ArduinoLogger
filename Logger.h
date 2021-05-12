@@ -31,7 +31,10 @@ typedef void (*printfunc)(Print*);
 #define LOG_TEST 2
 #define LOG_RUN 3
 
+// #define LOG_LEVEL LOG_OFF
 #define LOG_LEVEL LOG_DEBUG
+// #define LOG_LEVEL LOG_TEST
+// #define LOG_LEVEL LOG_RUN
 
 #define debug(msg, args...) _debug(__FILE__,__LINE__,msg, args)
 #define error(msg, args...) _error(__FILE__,__LINE__,msg, args)
