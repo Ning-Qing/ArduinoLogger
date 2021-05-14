@@ -1,5 +1,5 @@
 # ArdunioLog
-This library is used to implement log output on the Arduino platform.
+This library is used to implement log output on the Arduino platform.Providing an output classification, positioning statement, formatted output function, the output of free memory.
 
 ## Use
 
