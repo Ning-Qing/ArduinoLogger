@@ -49,3 +49,13 @@ Logger can be bound to class objects that inherit Print to achieve output
 ```c++
 Logger log(&Serial);
 ```
+## Features
+### Formatted output
+ * %s	string (char*)
+ * %c	char
+ * %d	int
+ * %f   double
+ * %t	boole
+### Prompt information
+* Execute the statement where the source file name and line number
+* Free memory(Bit)

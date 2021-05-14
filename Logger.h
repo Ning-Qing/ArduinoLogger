@@ -62,7 +62,9 @@ class Logger
 		#if LOG_LEVEL > 0 && LOG_LEVEL < 2
 		char file[20];
 		strcpy(file,_file);
-		printLog(file,line,LOG_DEBUG,msg, args...);
+		printLog(file,line,"DEBUG",msg, args...);
+		_logOutput->print(F(" FreeMemory: "));
+		_logOutput->println(freeMemory());
 		#endif
 	}
 
@@ -71,7 +73,8 @@ class Logger
 		#if LOG_LEVEL > 0
 		char file[20];
 		strcpy(file,_file);
-		printLog(file,line,LOG_RUN,msg, args...);
+		printLog(file,line,"ERROR",msg, args...);
+		_logOutput->println();
 		#endif
 	}
 
@@ -98,7 +101,7 @@ class Logger
 	void print(const char *format,va_list args);
 	void printf(const char format,va_list *args);
 
-	template <class T> void printLog(const char *file,int line,int level,T msg, ...){
+	template <class T> void printLog(const char *file,int line,const char* level,T msg, ...){
 		#if LOG_LEVEL > 0
 		if(prefix != NULL) _logOutput->print(prefix);
 		_logOutput->print(" ");
@@ -107,19 +110,17 @@ class Logger
 		va_start(args,msg);
 		print(msg, args);
 
-		_logOutput->print(" file: ");
+		_logOutput->print(F(" file: "));
 		_logOutput->print(file);
-		_logOutput->print(" line: ");
+		_logOutput->print(F(" line: "));
 		_logOutput->print(line);
 		
-		if (level) {
-			static const char levels[] = "D E";
-			_logOutput->print(" level: ");
-			_logOutput->print(levels[level - 1]);
-		}
+		_logOutput->print(F(" level: "));
+		_logOutput->print(level);
 
-		_logOutput->println();
 		#endif
 	}
+
+	int freeMemory();
 };
 #endif
